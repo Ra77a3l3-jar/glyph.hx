@@ -4,6 +4,8 @@ A Nerd Font icon and color library for [Helix](https://github.com/helix-editor/h
 
 glyph.hx doesn't do anything on its own — it's a shared lookup table other plugins `require` so they can show colored file-type, folder, and git-status icons without each one maintaining its own copy.
 
+![glyph.hx icon preview](.github/assets/icon_preview.png)
+
 ---
 
 ## Requirements
@@ -67,6 +69,29 @@ This plugin is intended to be used by other plugins from [Steel](https://github.
 | `glyph-style` | a hex color, `#:base` (optional) | a `Style` with that color as foreground, built on top of `#:base` (defaults to the current theme's `ui.text`) |
 
 File and directory lookups match first by exact name (`Makefile`, `.git`, `README`, ...), then by extension, falling back to a generic icon if nothing matches.
+
+---
+
+## Examples
+
+<table>
+<tr>
+<td align="center" width="50%">
+
+A sidebar file tree with colored file and folder icons
+
+![forest.hx using glyph.hx](.github/assets/forest_hx_preview.png)
+
+</td>
+<td align="center" width="50%">
+
+A recent-files picker with colored file icons
+
+![trail.hx using glyph.hx](.github/assets/trail_hx_preview.png)
+
+</td>
+</tr>
+</table>
 
 ---
 
