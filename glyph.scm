@@ -1,9 +1,12 @@
+(require "helix/components.scm")
+
 (provide glyph-icon
          glyph-color
          glyph-dir-icon
          glyph-dir-color
          glyph-git-icon
-         glyph-git-color)
+         glyph-git-color
+         glyph-style)
 
 (define DEFAULT-DIR-ICON "󰉋")
 (define DEFAULT-DIR-COLOR "#3aa6e0")
@@ -107,3 +110,16 @@
 (define (glyph-color name)
   (let ([entry (lookup-entry name)])
     (if entry (cdr entry) DEFAULT-COLOR)))
+
+;; two hex digits starting at index -> integer 0-255
+(define (hex-byte hex start)
+  (string->number (substring hex start (+ start 2)) 16))
+
+;; #rrggbb to Color
+(define (hex->color hex)
+  (Color/rgb (hex-byte hex 1) (hex-byte hex 3) (hex-byte hex 5)))
+
+;; builds a style with the given hex color as foreground, on top of the
+;; current theme's plain text style unless a different base is given
+(define (glyph-style hex #:base [base (theme-scope-ref "ui.text")])
+  (style-fg base (hex->color hex)))
