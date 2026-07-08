@@ -6,7 +6,10 @@
          glyph-dir-color
          glyph-git-icon
          glyph-git-color
-         glyph-style)
+         glyph-style
+         glyph-hex->color
+         glyph-ui-icon
+         glyph-ui-color)
 
 (define DEFAULT-DIR-ICON "󰉋")
 (define DEFAULT-DIR-COLOR "#3aa6e0")
@@ -29,6 +32,26 @@
 (define (glyph-git-color status)
   (let ([entry (hash-try-get *glyph-git-status* status)])
     (if entry (cdr entry) DEFAULT-GIT-COLOR)))
+
+
+(define DEFAULT-UI-ICON "?")
+(define DEFAULT-UI-COLOR "#6d8086")
+
+(define *glyph-ui-icons*
+  (hash 'error (cons "󰅙" "#e06c75")
+        'alert (cons "󰀪" "#e5c07b")
+        'information (cons "󰋽" "#61afef")
+        'star (cons "󰌶" "#eca517")
+        'check (cons "󰄬" "#4caf50")
+        'close (cons "󰅖" "#6d8086")))
+
+(define (glyph-ui-icon key)
+  (let ([entry (hash-try-get *glyph-ui-icons* key)])
+    (if entry (car entry) DEFAULT-UI-ICON)))
+
+(define (glyph-ui-color key)
+  (let ([entry (hash-try-get *glyph-ui-icons* key)])
+    (if entry (cdr entry) DEFAULT-UI-COLOR)))
 
 (define *glyph-directory*
   (hash ".git" (cons "" "#f69a1b")
@@ -321,6 +344,9 @@
 ;; #rrggbb to Color
 (define (hex->color hex)
   (Color/rgb (hex-byte hex 1) (hex-byte hex 3) (hex-byte hex 5)))
+
+;; public alias so other plugins can build their own Styles from hex codes
+(define (glyph-hex->color hex) (hex->color hex))
 
 ;; builds a style with the given hex color as foreground, on top of the
 ;; current theme's plain text style unless a different base is given
