@@ -9,7 +9,9 @@
          glyph-style
          glyph-hex->color
          glyph-ui-icon
-         glyph-ui-color)
+         glyph-ui-color
+         glyph-kind-icon
+         glyph-kind-color)
 
 (define DEFAULT-DIR-ICON "󰉋")
 (define DEFAULT-DIR-COLOR "#3aa6e0")
@@ -52,6 +54,44 @@
 (define (glyph-ui-color key)
   (let ([entry (hash-try-get *glyph-ui-icons* key)])
     (if entry (cdr entry) DEFAULT-UI-COLOR)))
+
+(define DEFAULT-KIND-ICON "")
+(define DEFAULT-KIND-COLOR "#6d8086")
+
+(define *glyph-symbol-kinds*
+  (hash
+        'module (cons "" "#7aa2f7")
+        'namespace (cons "" "#7aa2f7")
+        'package (cons "" "#7aa2f7")
+        'class (cons "" "#e0af68")
+        'struct (cons "" "#e0af68")
+        'interface (cons "" "#2ac3de")
+        'trait (cons "" "#2ac3de")
+        'enum (cons "" "#e0af68")
+        'enum-member (cons "" "#ff9e64")
+        'function (cons "" "#bb9af7")
+        'method (cons "" "#bb9af7")
+        'constructor (cons "" "#bb9af7")
+        'macro (cons "" "#bb9af7")
+        'field (cons "" "#f7768e")
+        'property (cons "" "#f7768e")
+        'type (cons "" "#2ac3de")
+        'constant (cons "" "#ff9e64")
+        'variable (cons "" "#9ece6a")
+        'object (cons "" "#7aa2f7")
+        'array (cons "" "#7dcfff")
+        'boolean (cons "" "#ff9e64")
+        'number (cons "" "#ff9e64")
+        'string (cons "" "#9ece6a")
+        'key (cons "" "#7dcfff")))
+
+(define (glyph-kind-icon kind)
+  (let ([entry (hash-try-get *glyph-symbol-kinds* kind)])
+    (if entry (car entry) DEFAULT-KIND-ICON)))
+
+(define (glyph-kind-color kind)
+  (let ([entry (hash-try-get *glyph-symbol-kinds* kind)])
+    (if entry (cdr entry) DEFAULT-KIND-COLOR)))
 
 (define *glyph-directory*
   (hash ".git" (cons "" "#f69a1b")
