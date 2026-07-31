@@ -97,4 +97,6 @@ A recent-files picker with colored file icons
 
 ## Credits
 
-Icons are sourced from [mini.icons](https://github.com/echasnovski/mini.nvim).
+> [!NOTE]
+> Icons are sourced from [mini.icons](https://github.com/echasnovskimini.nvim) and [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons/tree/master)
+> all rights to the icons remain with their respective projects and are subject to their licenses.
