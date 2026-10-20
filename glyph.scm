@@ -119,7 +119,7 @@
   (let ([entry (hash-try-get *glyph-directory* (trim-end-matches name "/"))])
     (if entry (cdr entry) DEFAULT-DIR-COLOR)))
 
-(define DEFAULT-ICON "󰍔")
+(define DEFAULT-ICON "")
 (define DEFAULT-COLOR "#6d8086")
 
 (define *glyph-filename*
