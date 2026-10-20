@@ -358,6 +358,7 @@
         "ada" (cons "" "#599eff")
         "adb" (cons "" "#599eff")
         "ads" (cons "" "#a074c4")
+        "age" (cons "" "#6d8086")
         "ai" (cons "" "#cbcb41")
         "aif" (cons "󰈣" "#00afff")
         "aiff" (cons "" "#00afff")
